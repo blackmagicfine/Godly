@@ -1,4 +1,4 @@
-package com.github.roburrito.godly;
+package com.github.roburrito.bukkit.godly;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;

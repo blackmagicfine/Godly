@@ -1,4 +1,4 @@
-package com.github.roburrito.godly.listeners;
+package com.github.roburrito.bukkit.godly.listeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.github.roburrito.godly.Godly;
+import com.github.roburrito.bukkit.godly.Godly;
 
 public class GodlyPlayerListener implements Listener {
 	
