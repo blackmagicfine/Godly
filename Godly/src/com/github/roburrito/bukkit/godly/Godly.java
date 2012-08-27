@@ -4,6 +4,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.roburrito.bukkit.godly.object.GodlyUniverse;
+import com.github.roburrito.bukkit.godly.FavorCommand;
 
 public class Godly extends JavaPlugin {
 
@@ -21,6 +22,7 @@ public class Godly extends JavaPlugin {
 		
 		registerEvents();
 		
+		getCommand("favor").setExecutor(new FavorCommand(this));
 	}
 	
 	private void registerEvents() {
