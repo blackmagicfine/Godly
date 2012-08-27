@@ -7,6 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.github.roburrito.bukkit.godly.Godly;
+import com.palmergames.bukkit.util.Colors;
 
 /*This class handles all commands beginning with "/favor"*/
 public class FavorCommand implements CommandExecutor {
