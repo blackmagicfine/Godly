@@ -6,7 +6,7 @@ import java.util.List;
 import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 
-public class ShrineBlockOwner {
+public class ShrineBlockOwner extends GodlyObject{
 
 	protected List<ShrineBlock> shrineBlocks = new ArrayList<ShrineBlock>();
 	protected GodlyPermission permissions;
