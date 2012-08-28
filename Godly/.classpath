@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="C:/Users/Robert/git/lib/Essentials.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Robert/git/lib/EssentialsGroupManager.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Robert/git/lib/citizensapi-2.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Robert/git/lib/Towny.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,26 +1,24 @@
 package com.github.roburrito.bukkit.godly.object;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.World;
 
-import Exceptions.EmptyShrineException;
 
 import com.github.roburrito.bukkit.godly.GodlySettings;
+import com.github.roburrito.bukkit.godly.exceptions.EmptyShrineException;
 import com.github.roburrito.bukkit.util.BukkitTools;
 import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;
-import com.palmergames.bukkit.towny.exceptions.EmptyTownException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.Coord;
-import com.palmergames.bukkit.towny.object.Resident;
+import com.palmergames.util.StringMgmt;
 
 public class Shrine extends ShrineBlockOwner {
 
-	private static final String ECONOMY_ACCOUNT_PREFIX = "shrine-";
+	private static final String FAVOR_ACCOUNT_PREFIX = "shrine-";
 
 	private List<Worshipper> worshippers = new ArrayList<Worshipper>();
 	private List<ShrineBlock> shrineBlocks = new ArrayList<ShrineBlock>();
@@ -160,13 +158,13 @@ public class Shrine extends ShrineBlockOwner {
 			if(worshippers.get(i).getFavor(god) > candidate.getFavor(god))
 				candidate = worshippers.get(i);
 		}
-		
+
 		try {
 			setAbbot(candidate);
 		} catch (TownyException e) {
 		}
 	}
-	
+
 	public void setAbbot(Worshipper worshipper) throws TownyException {
 		if(!hasWorshipper(worshipper)) {
 			throw new TownyException("Abbot does not belong to shrine!");
@@ -179,7 +177,7 @@ public class Shrine extends ShrineBlockOwner {
 
 		return abbot;
 	}
-	
+
 	public boolean hasAbbot() {
 		return abbot != null;
 	}
@@ -217,29 +215,29 @@ public class Shrine extends ShrineBlockOwner {
 				throw new EmptyShrineException(this);
 		}
 	}
-	
+
 	private void removeAllWorshippers() {
 		for (Worshipper worshipper : new ArrayList<Worshipper>(worshippers))
 			remove(worshipper);
 	}
-	
+
 	private void remove(Worshipper worshipper) {
 		worshippers.remove(worshipper);
 		if(isAbbot(worshipper)) {
 			if(worshippers.size() > 0)
 				chooseAbbot();
 		}
-		
+
 		try {
 			worshipper.setShrine(null);
 		} catch(AlreadyRegisteredException e) {
 		}
 	}
-	
+
 	public List<Worshipper> getWorshippers() {
 		return worshippers;
 	}
-		
+
 	public boolean hasWorshipper(Worshipper worshipper) {
 		if(worshippers.contains(worshipper))
 			return true;
@@ -347,7 +345,7 @@ public class Shrine extends ShrineBlockOwner {
 		} else
 			throw new TownyException("Spawn is not within the homeBlock.");
 	}
-	
+
 	public Location getSpawn() throws TownyException {
 
 		if (hasHomeBlock() && spawn != null) {
@@ -359,12 +357,12 @@ public class Shrine extends ShrineBlockOwner {
 			throw new TownyException("Shrine has not set a spawn location.");
 		}
 	}
-	
+
 	public boolean hasSpawn() {
 
 		return (hasHomeBlock() && spawn != null);
 	}
-	
+
 	public List<String> getTreeString(int depth) {
 
 		List<String> out = new ArrayList<String>();
@@ -373,11 +371,11 @@ public class Shrine extends ShrineBlockOwner {
 		out.add(getTreeDepth(depth + 1) + "Home: " + homeBlock);
 		out.add(getTreeDepth(depth + 1) + "Bonus: " + bonusBlocks);
 		out.add(getTreeDepth(depth + 1) + "ShrineBlocks (" + getShrineBlocks().size() + "): ");
-		
+
 		out.add(getTreeDepth(depth + 1) + "Worshippers (" + getWorshippers().size() + "):");
 		for (Worshipper worshipper : getWorshippers())
 			out.addAll(worshipper.getTreeString(depth + 2));
-		return out;
+				return out;
 	}
 
 	public void setPublic(boolean isPublic) {
@@ -419,17 +417,17 @@ public class Shrine extends ShrineBlockOwner {
 		else
 			return GodlyUniverse.getDataSource().getShrineWorld(this.getName());
 	}
-	
+
 	public boolean hasWorld() {
 		return world != null;
 	}
-	
+
 	public void clear() {
 		removeAllWorshippers();
 		abbot = null;
 		worshippers.clear();
 		homeBlock = null;
-		
+
 		try {
 			if (hasWorld()) {
 				world.removeShrineBlocks(getShrineBlocks());
@@ -438,12 +436,16 @@ public class Shrine extends ShrineBlockOwner {
 		} catch (NotRegisteredException e) {
 		}
 	}
-	
-	 protected World getBukkitWorld() {
-	        if (hasWorld()) {
-	            return BukkitTools.getWorld(getWorld().getName());
-	        } else {
-	            return super.getBukkitWorld();
-	        }
-	    }
+
+	protected World getBukkitWorld() {
+		if (hasWorld()) {
+			return BukkitTools.getWorld(getWorld().getName());
+		} else {
+			return super.getBukkitWorld();
+		}
+	}
+
+	public String getFavorName() {
+		return StringMgmt.trimMaxLength(Shrine.FAVOR_ACCOUNT_PREFIX + getName(), 32);
+	}
 }
