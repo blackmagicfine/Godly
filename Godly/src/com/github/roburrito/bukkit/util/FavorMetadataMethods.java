@@ -2,10 +2,11 @@ package com.github.roburrito.bukkit.util;
 /*TODO: FIX IMPORT LIST*/
 import java.util.List;
 
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
+
 import com.github.roburrito.bukkit.godly.Godly;
-import com.github.roburrito.bukkit.godly.listeners.FixedMetadataValue;
-import com.github.roburrito.bukkit.godly.listeners.MetadataValue;
-import com.github.roburrito.bukkit.godly.listeners.Player;
 
 public class FavorMetadataMethods {
 	
@@ -13,10 +14,15 @@ public class FavorMetadataMethods {
 	public String godlyFavors[] = {"Arcamorde_Favor", "Terra_Favor", "Aegis_Favor", "Zi_Favor", "Raz_Favor", "Meta_Favor"};
 	private final Godly plugin;
 	
+	public FavorMetadataMethods(Godly plugin) {
+		this.plugin = plugin;
+	}
+	
 	/*This method is for ease of access, so we don't have to constantly deal with large numbers.*/
 	public int getRank(Player player, String key) {
 		/*TODO: Map metadata into a sensible range of "ranks" for ease of access.*/
 		int exp = getMetadata(player, key);
+		return exp;
 	}
 	
 	public void setMetadata(Player player, String key, int value){

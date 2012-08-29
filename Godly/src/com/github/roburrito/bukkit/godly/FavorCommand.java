@@ -9,8 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.github.roburrito.bukkit.godly.Godly;
-import com.github.roburrito.bukkit.godly.listeners.FixedMetadataValue; 
-import com.github.roburrito.bukkit.godly.listeners.MetadataValue; 
 import com.github.roburrito.bukkit.util.FavorMetadataMethods;
 import com.palmergames.bukkit.util.Colors;
 
