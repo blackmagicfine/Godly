@@ -47,7 +47,7 @@ public class GodlyPlayerListener implements Listener {
 	public void ensureFavorsExist(Player player) {
 		String Godly_Favors[] = favorMethods.godlyFavors;
 		for(String favor : Godly_Favors){
-			if(favorMethods.getMetadata(player, favor) == Integer.MIN_VALUE)
+			if(favorMethods.getMetadata(player, favor) == favorMethods.NullFavor)
 				favorMethods.setMetadata(player, favor, 0);
 		}
 	}
